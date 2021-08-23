@@ -1,27 +1,57 @@
 # MapasApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
+[Gracias a Fernando Herrera por este curso](https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24246646#questions)
 
-## Development server
+En esta aplicación veremos el manejo de librerías escritas en JavaScript en TypeScript, usando mapas basados en [Mapbox](https://www.mapbox.com/) (el API es similar a la de Google Maps)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Algunos temas puntuales que veremos:
 
-## Code scaffolding
+- Marcadores
+- Eventos
+- FlyTo
+- Coordenadas geográficas
+- Componentes para re-utilización de mapas
+- Mantener objetos de forma persistente
+- @types
+- Zoom
+- Range
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Instalación de mapbox
 
-## Build
+Los pasos para la instalación los podemos encontrar en [mapbox.com/install](https://www.mapbox.com/install/js/bundler-install/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Instalar pakete
 
-## Running unit tests
+``` code
+npm install mapbox-gl --save
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Instalar CSS, enl index.html
 
-## Running end-to-end tests
+``` code
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Importar librería
 
-## Further help
+``` code
+import * as mapboxgl from 'mapbox-gl';
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Instalar tipado de librería
+
+``` code
+npm i --save-dev @types/mapbox-gl
+```
+
+### Adicionar mapa a la página
+
+Reemplaza "YOUR_CONTAINER_ELEMENT_ID" con la Id de un elemento en tu página donde te gustaría ver el mapa.
+
+``` code
+(mapboxgl as any).accessToken = 'pk.eyJ1Ijoib3JsYW5kb2YxMzc2IiwiYSI6ImNrc2tkczh0bjA0dHIydnF6ZmVjaHZidHYifQ.Keu2PqVlj8oDj14H9N0pJQ';
+var map = new mapboxgl.Map({
+container: 'YOUR_CONTAINER_ELEMENT_ID',
+style: 'mapbox://styles/mapbox/streets-v11'
+});
+```
